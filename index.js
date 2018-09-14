@@ -67,9 +67,9 @@ function dispatchEvent(evt, listeners) {
         var listener = listeners[i];
         listener.handler.call(evt.target, evt);
 
-        if (this.defaultPostponed) {
+        if (evt.defaultPostponed) {
             var remainingListeners = listeners.slice(i + 1);
-            var promise = this.defaultPostponed.then(function(decision) {
+            var promise = evt.defaultPostponed.then(function(decision) {
                 if (decision === false) {
                     evt.preventDefault();
                 }
@@ -91,7 +91,9 @@ function dispatchEvent(evt, listeners) {
 function GenericEvent(type, target, props) {
     this.type = type;
     this.target = target;
-    assign(this, props);
+    for(var key in props) {
+        this[key] = props[key];
+    }
     this.defaultPrevented = false;
     this.defaultPostponed = null;
     this.propagationStopped = false;
