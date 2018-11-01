@@ -2,7 +2,7 @@
   "name": "relaks-event-emitter",
   "description": "Event emitter for Relaks",
   "author": "Chung Leong",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./index.js",
   "preferGlobal": false,
   "repository": "git://github.com/chung-leong/relaks-event-emitter.git",
@@ -12,9 +12,13 @@
   },
   "license": "MIT",
   "keywords": [
-    "relaks"
+    "relaks",
+    "react",
+    "preact"
   ],
   "tags": [
+    "relaks",
+    "react",
     "preact"
   ],
   "scripts": {
