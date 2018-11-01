@@ -30,7 +30,7 @@ Remove an event listener.
 function triggerEvent(evt: object)
 ```
 
-Send an event object to any listeners interested in the event.
+Send an event object to any listeners interested in the event. A method used by the event emitter itself.
 
 ## Methods of event object
 
@@ -70,4 +70,4 @@ Keep listeners further down the chain from receiving this event.
 async function waitForDecision(void): void
 ```
 
-This method is used by the event emitter itself. If a `postponeDefault()` was called on the event, wait for the fulfillment of the promise given. Resolve immediately otherwise.
+A method used by the event emitter itself. If a `postponeDefault()` was called on the event, wait for the fulfillment of the promise given. Resolve immediately otherwise.
