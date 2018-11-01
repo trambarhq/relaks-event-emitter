@@ -41,7 +41,7 @@ Send an event object to any listeners interested in the event. A method used by 
 ### preventDefault
 
 ```typescript
-function preventDefault(void)
+function preventDefault(void): void
 ```
 
 Indicate that the default action should not be performed.
@@ -49,7 +49,7 @@ Indicate that the default action should not be performed.
 ### postponeDefault
 
 ```typescript
-function postponeDefault(proceed: Promise)
+function postponeDefault(proceed: Promise): void
 ```
 
 Request that the default action to be postpone. This function accepts a promise. A event emitter would wait for this promise to be fulfilled before perform the default action. If the promise's fulfillment value is `false`, that'd be the equivalent of calling `preventDefault()`.
@@ -59,7 +59,7 @@ When there are multiple listeners, a call to this function will keep other liste
 ### stopImmediatePropagation
 
 ```typescript
-function stopImmediatePropagation(void)
+function stopImmediatePropagation(void): void
 ```
 
 Keep listeners further down the chain from receiving this event.

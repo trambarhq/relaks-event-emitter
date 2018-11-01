@@ -86,6 +86,7 @@ function dispatchEvent(evt, listeners) {
             break;
         }
     }
+    return null;
 }
 
 function GenericEvent(type, target, props) {
