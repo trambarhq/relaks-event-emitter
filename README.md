@@ -11,7 +11,7 @@ Relaks Event Emitter is the base class of data sources used by [Relaks](https://
 ### addEventListener
 
 ```typescript
-function addEventListener(name: string, handler: function, beginning?:boolean)
+function addEventListener(name: string, handler: function, beginning?:boolean): void
 ```
 
 Add an event listener. If `beginning` is `true`, then `handler` will receive the event prior to handlers added previously. Otherwise it's placed at the end of the queue.
@@ -19,7 +19,7 @@ Add an event listener. If `beginning` is `true`, then `handler` will receive the
 ### removeEventListener
 
 ```typescript
-function removeEventListener(name: string, handler: function)
+function removeEventListener(name: string, handler: function): void
 ```
 
 Remove an event listener.
@@ -27,10 +27,10 @@ Remove an event listener.
 ### triggerEvent
 
 ```typescript
-function triggerEvent(evt: object)
+function triggerEvent(evt: object): boolean
 ```
 
-Send an event object to any listeners interested in the event. A method used by the event emitter itself.
+Send an event object to any listeners interested in the event. A method used by the event emitter itself. The return value indicates whether there were any listeners.
 
 ## Methods of event object
 
