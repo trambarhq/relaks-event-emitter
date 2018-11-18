@@ -36,6 +36,7 @@ Send an event object to any listeners interested in the event. A method used by 
 
 * [preventDefault](#preventdefault)
 * [postponeDefault](#postponedefault)
+* [stopImmediatePropagation](#stopimmediatepropagation)
 * [waitForDecision](#waitfordecision)
 
 ### preventDefault
@@ -52,7 +53,7 @@ Indicate that the default action should not be performed.
 function postponeDefault(proceed: Promise): void
 ```
 
-Request that the default action to be postpone. This function accepts a promise. A event emitter would wait for this promise to be fulfilled before perform the default action. If the promise's fulfillment value is `false`, that'd be the equivalent of calling `preventDefault()`.
+Request that the default action to be postpone. This function accepts a promise. A event emitter would wait for this promise to be fulfilled before perform the default action. If the promise's fulfillment value is `false` (and not merely "falsy"), that'd be the equivalent of calling `preventDefault()` and `stopImmediatePropagation()`.
 
 When there are multiple listeners, a call to this function will keep other listeners from receiving the event until the promise given is fulfilled.
 

@@ -72,6 +72,7 @@ function dispatchEvent(evt, listeners) {
             var promise = evt.defaultPostponed.then(function(decision) {
                 if (decision === false) {
                     evt.preventDefault();
+                    evt.stopImmediatePropagation();
                 }
                 if (!evt.propagationStopped) {
                     return dispatchEvent(evt, remainingListeners);
