@@ -1,6 +1,6 @@
 # Relaks Event Emitter
 
-Relaks Event Emitter is the base class of data sources used by [Relaks](https://github.com/chung-leong/relaks) applications. It's designed for promised-based asynchronous code. It provides a notable feature allowing event listeners to postpone the default action associated with an event.
+Relaks Event Emitter is the base class of data sources used by [Relaks](https://github.com/trambarhq/relaks) applications. It's designed for promised-based asynchronous code. It provides a notable feature allowing event listeners to postpone the default action associated with an event.
 
 ## Methods of emitter
 
