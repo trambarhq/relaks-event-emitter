@@ -1,5 +1,6 @@
 function RelaksEventEmitter() {
     this.listeners = [];
+    this.promises = [];
 }
 
 var prototype = RelaksEventEmitter.prototype;
@@ -44,6 +45,28 @@ prototype.removeEventListener = function(type, handler) {
 };
 
 /**
+ * Return a promise that will be fulfilled when the specified event occurs
+ *
+ * @param  {String} type
+ *
+ * @return {Promise<Event>}
+ */
+prototype.waitForEvent = function(type) {
+    var promise = this.promises[type];
+    if (!promise) {
+        var resolve, reject;
+        promise = new Promise(function(f1, f2) {
+            resolve = f1;
+            reject = f2;
+        });
+        promise.resolve = resolve;
+        promise.reject = reject;
+        this.promises[type] = promise;
+    }
+    return promise;
+};
+
+/**
  * Send event to event listeners, return true or false depending on whether
  * there were any listeners
  *
@@ -52,13 +75,24 @@ prototype.removeEventListener = function(type, handler) {
  * @return {Boolean}
  */
 prototype.triggerEvent = function(evt) {
+    var promise = this.promises[evt.type];
+    if (promise) {
+        delete this.promises[evt.type];
+    }
     var listeners = this.listeners.filter(function(listener) {
         return (listener.type === evt.type);
     });
     if (listeners.length === 0) {
-        return false;
+        if (promise) {
+            promise.resolve(evt);
+            return true;
+        } else {
+            return false;
+        }
     }
-    dispatchEvent(evt, listeners);
+    dispatchEvent(evt, listeners).then(function() {
+        promise.resolve(evt);
+    });
     return true;
 };
 
@@ -87,7 +121,7 @@ function dispatchEvent(evt, listeners) {
             break;
         }
     }
-    return null;
+    return Promise.resolve();
 }
 
 function GenericEvent(type, target, props) {
