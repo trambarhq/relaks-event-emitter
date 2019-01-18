@@ -7,6 +7,7 @@ Relaks Event Emitter is the base class of data sources used by [Relaks](https://
 * [addEventListener](#addeventlistener)
 * [removeEventListener](#removeeventlistener)
 * [triggerEvent](#triggerevent)
+* [waitForEvent](#waitforevent)
 
 ### addEventListener
 
@@ -23,6 +24,14 @@ function removeEventListener(name: string, handler: function): void
 ```
 
 Remove an event listener.
+
+### waitForEvent()
+
+```typescript
+async function waitForEvent(type: string): Event
+```
+
+Return a promise that is fulfilled when an event of the specified type occurs.
 
 ### triggerEvent
 
