@@ -91,7 +91,9 @@ prototype.triggerEvent = function(evt) {
         }
     }
     dispatchEvent(evt, listeners).then(function() {
-        promise.resolve(evt);
+        if (promise) {
+            promise.resolve(evt);
+        }
     });
     return true;
 };
