@@ -28,15 +28,17 @@ module.exports = function(config) {
         reporters: [ 'progress' ],
 
         webpack: {
-            devtool: 'inline-source-map',
+            mode: 'production',
             module: {
-                loaders: [
+                rules: [
                     {
                         test: /\.jsx?$/,
                         loader: 'babel-loader',
                         exclude: Path.resolve('./node_modules'),
                         query: {
-                            presets: [ 'env' ]
+                            presets: [
+                                [ 'env', { modules: false } ],
+                            ]
                         }
                     }
                 ]
@@ -47,10 +49,11 @@ module.exports = function(config) {
                     return Path.resolve(`./${folder}`);
                 })
             },
-            externals: {
-            }
+            performance: {
+                hints: false
+            },
+            devtool: 'inline-source-map',
         },
-
         webpackMiddleware: {
             noInfo: true,
         },
