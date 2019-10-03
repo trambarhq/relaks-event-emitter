@@ -145,6 +145,9 @@ prototype.preventDefault = function() {
 };
 
 prototype.postponeDefault = function(promise) {
+    if (promise instanceof Function) {
+        promise = promise();
+    }
     if (!promise || !(promise.then instanceof Function)) {
         if (process.env.NODE_ENV !== 'production') {
             console.warn('Non-promise passed to postponeDefault()');

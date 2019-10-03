@@ -62,9 +62,13 @@ Indicate that the default action should not be performed.
 function postponeDefault(proceed: Promise): void
 ```
 
-Request that the default action to be postpone. This function accepts a promise. A event emitter would wait for this promise to be fulfilled before perform the default action. If the promise's fulfillment value is `false` (and not merely "falsy"), that'd be the equivalent of calling `preventDefault()` and `stopImmediatePropagation()`.
+```typescript
+function postponeDefault(callback: AsyncFunction): void
+```
 
-When there are multiple listeners, a call to this function will keep other listeners from receiving the event until the promise given is fulfilled.
+Request that the default action to be postponed. The method accepts either a promise or a callback function that returns a promise. An event emitter would wait for this promise to be fulfilled before perform the default action. If the promise's fulfillment value is `false` (and not merely "falsy"), that'd be the equivalent of calling `preventDefault()` and `stopImmediatePropagation()`--i.e. the default action will not occur.
+
+When there are multiple listeners, a call to this method will keep other listeners from receiving the event until the promise given is fulfilled.
 
 ### stopImmediatePropagation
 
@@ -80,4 +84,4 @@ Keep listeners further down the chain from receiving this event.
 async function waitForDecision(void): void
 ```
 
-A method used by the event emitter itself. If a `postponeDefault()` was called on the event, wait for the fulfillment of the promise given. Resolve immediately otherwise.
+A method used by the event emitter itself. If a promise is given to `postponeDefault()` within an event handler, this method will wait for its fulfillment. The method returns immediately otherwise.

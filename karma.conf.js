@@ -37,7 +37,7 @@ module.exports = function(config) {
                         exclude: Path.resolve('./node_modules'),
                         query: {
                             presets: [
-                                [ 'env', { modules: false } ],
+                                [ '@babel/env', { modules: false } ],
                             ]
                         }
                     }

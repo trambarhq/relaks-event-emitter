@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.0.7
+
+* Added option to pass a callback to postponeDefault()
+
 ## 0.0.6
 
 * Fixed event dispatch
