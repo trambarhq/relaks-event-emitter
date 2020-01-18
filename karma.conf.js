@@ -37,7 +37,11 @@ module.exports = function(config) {
             exclude: Path.resolve('./node_modules'),
             query: {
               presets: [
-                [ '@babel/env', { modules: false } ],
+                '@babel/env',
+              ],
+              plugins: [
+                '@babel/transform-regenerator',
+                '@babel/transform-runtime',
               ]
             }
           }

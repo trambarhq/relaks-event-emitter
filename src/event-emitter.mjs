@@ -25,9 +25,9 @@ class RelaksEventEmitter {
       return;
     }
     if (beginning) {
-        this.listeners.unshift({ type,  handler });
+      this.listeners.unshift({ type,  handler });
     } else {
-        this.listeners.push({ type,  handler });
+      this.listeners.push({ type,  handler });
     }
   }
 
@@ -53,8 +53,8 @@ class RelaksEventEmitter {
   waitForEvent(type) {
     let promise = this.promises[type];
     if (!promise) {
-      var resolve, reject;
-      promise = new Promise(function(f1, f2) {
+      let resolve, reject;
+      promise = new Promise((f1, f2) => {
         resolve = f1;
         reject = f2;
       });
@@ -78,8 +78,8 @@ class RelaksEventEmitter {
     if (promise) {
       delete this.promises[evt.type];
     }
-    const listeners = this.listeners.filter(function(listener) {
-        return (listener.type === evt.type);
+    const listeners = this.listeners.filter((listener) => {
+      return (listener.type === evt.type);
     });
     if (listeners.length === 0) {
       if (promise) {
@@ -89,15 +89,15 @@ class RelaksEventEmitter {
         return false;
       }
     }
-    evt.decisionPromise = this.dispatchEvent(evt, listeners).then(function() {
+    evt.decisionPromise = this.dispatchEvent(evt, listeners).then(() => {
       if (promise) {
-          promise.resolve(evt);
+        promise.resolve(evt);
       }
     });
     return true;
   }
 
-  async function dispatchEvent(evt, listeners) {
+  async dispatchEvent(evt, listeners) {
     for (let listener of listeners) {
       listener.handler.call(evt.target, evt);
 

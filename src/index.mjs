@@ -3,5 +3,6 @@ import { GenericEvent } from './generic-event.mjs';
 
 export {
   RelaksEventEmitter,
+  RelaksEventEmitter as default,
   GenericEvent,
 };

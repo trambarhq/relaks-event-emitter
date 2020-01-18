@@ -4,6 +4,7 @@
   "author": "Chung Leong",
   "version": "2.0.0",
   "main": "./index.js",
+  "module": "./index.mjs",
   "preferGlobal": false,
   "repository": "git://github.com/trambarhq/relaks-event-emitter.git",
   "homepage": "https://github.com/trambarhq/relaks-event-emitter",
@@ -30,7 +31,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
+    "@babel/plugin-transform-regenerator": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
+    "@babel/runtime": "^7.8.3",
     "babel-loader": "^8.0.6",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
