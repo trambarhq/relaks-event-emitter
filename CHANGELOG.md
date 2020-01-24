@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.0
+
+* Rewrote as ES7
+
 ## 0.0.7
 
 * Added option to pass a callback to postponeDefault()

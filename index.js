@@ -372,6 +372,7 @@
     return GenericEvent;
   }();
 
+  exports.EventEmitter = RelaksEventEmitter;
   exports.GenericEvent = GenericEvent;
   exports.RelaksEventEmitter = RelaksEventEmitter;
   exports.default = RelaksEventEmitter;
