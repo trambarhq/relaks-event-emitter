@@ -366,5 +366,4 @@ function () {
   return GenericEvent;
 }();
 
-export default RelaksEventEmitter;
 export { RelaksEventEmitter as EventEmitter, GenericEvent, RelaksEventEmitter };

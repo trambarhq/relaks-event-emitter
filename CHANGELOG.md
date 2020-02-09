@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.1
+
+* Fixed export
+
 ## 2.0.0
 
 * Rewrote as ES7

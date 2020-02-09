@@ -40,7 +40,6 @@ module.exports = function(config) {
                 '@babel/env',
               ],
               plugins: [
-                '@babel/transform-regenerator',
                 '@babel/transform-runtime',
               ]
             }

@@ -8,7 +8,7 @@ module.exports = [
     output: {
       file: `./${name}.js`,
       format: 'umd',
-      name: 'relaksEventEmitter',
+      name: 'RelaksEventEmitter',
     },
     plugins: [
       Babel({
