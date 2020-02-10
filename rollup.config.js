@@ -1,6 +1,4 @@
 const Babel = require('rollup-plugin-babel');
-const Resolve = require('@rollup/plugin-node-resolve');
-const CommonJS = require('@rollup/plugin-commonjs');
 
 module.exports = [
   'index',
@@ -18,13 +16,7 @@ module.exports = [
         presets: [
           '@babel/env',
         ],
-        plugins: [
-          '@babel/transform-runtime',
-        ],
-        runtimeHelpers: true,
       }),
-      Resolve(),
-      CommonJS(),
     ],
   };
 });
