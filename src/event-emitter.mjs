@@ -97,21 +97,28 @@ class RelaksEventEmitter {
     return true;
   }
 
-  async dispatchEvent(evt, listeners) {
-    for (let listener of listeners) {
+  dispatchEvent(evt, listeners) {
+    for (var i = 0; i < listeners.length; i++) {
+      const listener = listeners[i];
       listener.handler.call(evt.target, evt);
 
       if (evt.defaultPostponed) {
-        const decision = await evt.defaultPostponed;
-        if (decision === false) {
-          evt.preventDefault();
-          evt.stopImmediatePropagation();
-        }
+        const remainingListeners = listeners.slice(i + 1);
+        return evt.defaultPostponed.then((decision) => {
+          if (decision === false) {
+            evt.preventDefault();
+            evt.stopImmediatePropagation();
+          }
+          if (!evt.propagationStopped) {
+            return this.dispatchEvent(evt, remainingListeners);
+          }
+        });
       }
       if (evt.propagationStopped) {
         break;
       }
     }
+    return Promise.resolve();
   }
 }
 

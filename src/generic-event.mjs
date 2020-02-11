@@ -30,8 +30,8 @@ class GenericEvent {
     this.propagationStopped = true;
   }
 
-  async waitForDecision() {
-    await this.decisionPromise;
+  waitForDecision() {
+    return Promise.resolve(this.decisionPromise);
   }
 }
 

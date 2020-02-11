@@ -1,37 +1,17 @@
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-  try {
-    var info = gen[key](arg);
-    var value = info.value;
-  } catch (error) {
-    reject(error);
-    return;
-  }
+function _typeof(obj) {
+  "@babel/helpers - typeof";
 
-  if (info.done) {
-    resolve(value);
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function (obj) {
+      return typeof obj;
+    };
   } else {
-    Promise.resolve(value).then(_next, _throw);
+    _typeof = function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
   }
-}
 
-function _asyncToGenerator(fn) {
-  return function () {
-    var self = this,
-        args = arguments;
-    return new Promise(function (resolve, reject) {
-      var gen = fn.apply(self, args);
-
-      function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-      }
-
-      function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-      }
-
-      _next(undefined);
-    });
-  };
+  return _typeof(obj);
 }
 
 function _classCallCheck(instance, Constructor) {
@@ -185,108 +165,40 @@ function () {
     }
   }, {
     key: "dispatchEvent",
-    value: function () {
-      var _dispatchEvent = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(evt, listeners) {
-        var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, listener, decision;
+    value: function dispatchEvent(evt, listeners) {
+      var _this = this;
 
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _iteratorNormalCompletion = true;
-                _didIteratorError = false;
-                _iteratorError = undefined;
-                _context.prev = 3;
-                _iterator = listeners[Symbol.iterator]();
+      for (var i = 0; i < listeners.length; i++) {
+        var listener = listeners[i];
+        listener.handler.call(evt.target, evt);
 
-              case 5:
-                if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-                  _context.next = 18;
-                  break;
-                }
-
-                listener = _step.value;
-                listener.handler.call(evt.target, evt);
-
-                if (!evt.defaultPostponed) {
-                  _context.next = 13;
-                  break;
-                }
-
-                _context.next = 11;
-                return evt.defaultPostponed;
-
-              case 11:
-                decision = _context.sent;
-
+        if (evt.defaultPostponed) {
+          var _ret = function () {
+            var remainingListeners = listeners.slice(i + 1);
+            return {
+              v: evt.defaultPostponed.then(function (decision) {
                 if (decision === false) {
                   evt.preventDefault();
                   evt.stopImmediatePropagation();
                 }
 
-              case 13:
                 if (!evt.propagationStopped) {
-                  _context.next = 15;
-                  break;
+                  return _this.dispatchEvent(evt, remainingListeners);
                 }
+              })
+            };
+          }();
 
-                return _context.abrupt("break", 18);
+          if (_typeof(_ret) === "object") return _ret.v;
+        }
 
-              case 15:
-                _iteratorNormalCompletion = true;
-                _context.next = 5;
-                break;
-
-              case 18:
-                _context.next = 24;
-                break;
-
-              case 20:
-                _context.prev = 20;
-                _context.t0 = _context["catch"](3);
-                _didIteratorError = true;
-                _iteratorError = _context.t0;
-
-              case 24:
-                _context.prev = 24;
-                _context.prev = 25;
-
-                if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-                  _iterator["return"]();
-                }
-
-              case 27:
-                _context.prev = 27;
-
-                if (!_didIteratorError) {
-                  _context.next = 30;
-                  break;
-                }
-
-                throw _iteratorError;
-
-              case 30:
-                return _context.finish(27);
-
-              case 31:
-                return _context.finish(24);
-
-              case 32:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, null, [[3, 20, 24, 32], [25,, 27, 31]]);
-      }));
-
-      function dispatchEvent(_x, _x2) {
-        return _dispatchEvent.apply(this, arguments);
+        if (evt.propagationStopped) {
+          break;
+        }
       }
 
-      return dispatchEvent;
-    }()
+      return Promise.resolve();
+    }
   }]);
 
   return RelaksEventEmitter;
@@ -336,31 +248,9 @@ function () {
     }
   }, {
     key: "waitForDecision",
-    value: function () {
-      var _waitForDecision = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee() {
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return this.decisionPromise;
-
-              case 2:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function waitForDecision() {
-        return _waitForDecision.apply(this, arguments);
-      }
-
-      return waitForDecision;
-    }()
+    value: function waitForDecision() {
+      return Promise.resolve(this.decisionPromise);
+    }
   }]);
 
   return GenericEvent;
