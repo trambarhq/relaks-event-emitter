@@ -1,4 +1,4 @@
-class GenericEvent {
+class RelaksGenericEvent {
   constructor(type, target, props) {
     this.type = type;
     this.target = target;
@@ -36,5 +36,6 @@ class GenericEvent {
 }
 
 export {
-  GenericEvent,
+  RelaksGenericEvent,
+  RelaksGenericEvent as GenericEvent,
 };

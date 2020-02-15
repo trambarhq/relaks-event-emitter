@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.5
+
+* Adjusted exports
+
 ## 2.0.4
 
 * Removed dependency on Babel runtime

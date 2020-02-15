@@ -204,11 +204,11 @@ function () {
   return RelaksEventEmitter;
 }();
 
-var GenericEvent =
+var RelaksGenericEvent =
 /*#__PURE__*/
 function () {
-  function GenericEvent(type, target, props) {
-    _classCallCheck(this, GenericEvent);
+  function RelaksGenericEvent(type, target, props) {
+    _classCallCheck(this, RelaksGenericEvent);
 
     this.type = type;
     this.target = target;
@@ -219,7 +219,7 @@ function () {
     Object.assign(this, props);
   }
 
-  _createClass(GenericEvent, [{
+  _createClass(RelaksGenericEvent, [{
     key: "preventDefault",
     value: function preventDefault() {
       this.defaultPrevented = true;
@@ -253,8 +253,8 @@ function () {
     }
   }]);
 
-  return GenericEvent;
+  return RelaksGenericEvent;
 }();
 
 export default RelaksEventEmitter;
-export { RelaksEventEmitter as EventEmitter, GenericEvent, RelaksEventEmitter };
+export { RelaksEventEmitter as EventEmitter, RelaksGenericEvent as GenericEvent, RelaksEventEmitter, RelaksGenericEvent };

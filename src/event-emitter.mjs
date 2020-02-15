@@ -124,4 +124,5 @@ class RelaksEventEmitter {
 
 export {
   RelaksEventEmitter,
+  RelaksEventEmitter as EventEmitter,
 };

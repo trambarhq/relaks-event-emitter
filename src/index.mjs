@@ -1,9 +1,5 @@
-import { RelaksEventEmitter } from './event-emitter.mjs';
-import { GenericEvent } from './generic-event.mjs';
+export * from './event-emitter.mjs';
+export * from './generic-event.mjs';
 
-export {
-  RelaksEventEmitter as default,
-  RelaksEventEmitter,
-  RelaksEventEmitter as EventEmitter,
-  GenericEvent,
-};
+import { EventEmitter } from './event-emitter.mjs';
+export default EventEmitter;
