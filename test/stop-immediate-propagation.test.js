@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import { RelaksEventEmitter, GenericEvent } from '../index.mjs';
+import { EventEmitter, GenericEvent } from '../index.mjs';
 
 describe('#stopImmediatePropagation()', function() {
   it ('should keep additional handlers from being called', function() {
-    const emitter = new RelaksEventEmitter;
+    const emitter = new EventEmitter;
     const called = [];
     emitter.addEventListener('change', (evt) => {
       called.push('a');

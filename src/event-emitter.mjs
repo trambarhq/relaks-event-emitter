@@ -47,10 +47,11 @@ class RelaksEventEmitter {
    * Return a promise that will be fulfilled when the specified event occurs
    *
    * @param  {String} type
+   * @param  {Number|undefined} timeout
    *
    * @return {Promise<Event>}
    */
-  waitForEvent(type) {
+  waitForEvent(type, timeout) {
     let promise = this.promises[type];
     if (!promise) {
       let resolve, reject;
@@ -61,6 +62,14 @@ class RelaksEventEmitter {
       promise.resolve = resolve;
       promise.reject = reject;
       this.promises[type] = promise;
+
+      if (timeout) {
+        setTimeout(() => {
+          if (promise.reject) {
+            promise.reject(new Error(`No '${type}' event within ${timeout}ms`));
+          }
+        }, timeout);
+      }
     }
     return promise;
   }
@@ -83,6 +92,7 @@ class RelaksEventEmitter {
     });
     if (listeners.length === 0) {
       if (promise) {
+        promise.reject = null;
         promise.resolve(evt);
         return true;
       } else {
@@ -91,6 +101,7 @@ class RelaksEventEmitter {
     }
     evt.decisionPromise = this.dispatchEvent(evt, listeners).then(() => {
       if (promise) {
+        promise.reject = null;
         promise.resolve(evt);
       }
     });

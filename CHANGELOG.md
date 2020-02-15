@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.6
+
+* Added timeout param to waitForEvent
+
 ## 2.0.5
 
 * Adjusted exports

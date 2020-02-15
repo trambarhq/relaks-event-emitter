@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import { RelaksEventEmitter, GenericEvent } from '../index.mjs';
+import { EventEmitter, GenericEvent } from '../index.mjs';
 
 describe('#triggerEvent()', function() {
   it ('should fire multiple handlers', function() {
-    const emitter = new RelaksEventEmitter;
+    const emitter = new EventEmitter;
     const called = [];
     emitter.addEventListener('change', (evt) => {
       called.push('a');
@@ -18,7 +18,7 @@ describe('#triggerEvent()', function() {
     expect(called).to.eql([ 'a', 'b', 'c' ]);
   })
   it ('should call event handler with the instance as this', function() {
-    const emitter = new RelaksEventEmitter;
+    const emitter = new EventEmitter;
     let self;
     emitter.addEventListener('change', function(evt) {
       self = this;

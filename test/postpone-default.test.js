@@ -1,12 +1,9 @@
-import Chai, { expect } from 'chai';
-import ChaiAsPromised from 'chai-as-promised';
-import { RelaksEventEmitter, GenericEvent } from '../index.mjs';
-
-Chai.use(ChaiAsPromised);
+import { expect } from 'chai';
+import { EventEmitter, GenericEvent } from '../index.mjs';
 
 describe('#postponeDefault()', function() {
   it ('should postpone default behavior', async function() {
-    const emitter = new RelaksEventEmitter;
+    const emitter = new EventEmitter;
     const promise = ManualPromise();
     const called = [];
     emitter.addEventListener('change', (evt) => {
@@ -26,7 +23,7 @@ describe('#postponeDefault()', function() {
     expect(called).to.eql([ 'a', 'b', 'c' ]);
   })
   it ('should prevent default behavior when promise is fulfilled with false', async function() {
-    const emitter = new RelaksEventEmitter;
+    const emitter = new EventEmitter;
     const promise = ManualPromise();
     const called = [];
     emitter.addEventListener('change', (evt) => {
@@ -46,7 +43,7 @@ describe('#postponeDefault()', function() {
     expect(called).to.eql([ 'a', 'b' ]);
   })
   it ('should keep other handlers from being called', async function() {
-    const emitter = new RelaksEventEmitter;
+    const emitter = new EventEmitter;
     const promise = ManualPromise();
     const called = [];
     emitter.addEventListener('change', (evt) => {
@@ -72,7 +69,7 @@ describe('#postponeDefault()', function() {
     expect(called).to.eql([ 'a', 'b', 'c', 'd', 'e' ]);
   })
   it ('should correctly handle calls by multiple handlers', async function() {
-    const emitter = new RelaksEventEmitter;
+    const emitter = new EventEmitter;
     const promise1 = ManualPromise();
     const promise2 = ManualPromise();
     const called = [];
@@ -104,7 +101,7 @@ describe('#postponeDefault()', function() {
     expect(called).to.eql([ 'a', 'b', 'c', 'd', 'e' ]);
   })
   it ('should interact correctly with stopImmediatePropagation()', async function() {
-    const emitter = new RelaksEventEmitter;
+    const emitter = new EventEmitter;
     const promise1 = ManualPromise();
     const promise2 = ManualPromise();
     const called = [];
