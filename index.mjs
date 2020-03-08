@@ -36,9 +36,7 @@ function _createClass(Constructor, protoProps, staticProps) {
   return Constructor;
 }
 
-var RelaksEventEmitter =
-/*#__PURE__*/
-function () {
+var RelaksEventEmitter = /*#__PURE__*/function () {
   function RelaksEventEmitter() {
     _classCallCheck(this, RelaksEventEmitter);
 
@@ -135,6 +133,20 @@ function () {
       return promise;
     }
     /**
+     * Return a promise that will be fulfilled when a 'change' event occurs
+     *
+     * @param  {String} type
+     * @param  {Number|undefined} timeout
+     *
+     * @return {Promise<Event>}
+     */
+
+  }, {
+    key: "change",
+    value: function change(timeout) {
+      return this.waitForEvent('change');
+    }
+    /**
      * Send event to event listeners, return true or false depending on whether
      * there were any listeners
      *
@@ -215,9 +227,7 @@ function () {
   return RelaksEventEmitter;
 }();
 
-var RelaksGenericEvent =
-/*#__PURE__*/
-function () {
+var RelaksGenericEvent = /*#__PURE__*/function () {
   function RelaksGenericEvent(type, target, props) {
     _classCallCheck(this, RelaksGenericEvent);
 

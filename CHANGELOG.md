@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.8
+
+* Added change()
+
 ## 2.0.6
 
 * Added timeout param to waitForEvent

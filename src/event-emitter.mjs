@@ -75,6 +75,18 @@ class RelaksEventEmitter {
   }
 
   /**
+   * Return a promise that will be fulfilled when a 'change' event occurs
+   *
+   * @param  {String} type
+   * @param  {Number|undefined} timeout
+   *
+   * @return {Promise<Event>}
+   */
+  change(timeout) {
+    return this.waitForEvent('change');
+  }
+
+  /**
    * Send event to event listeners, return true or false depending on whether
    * there were any listeners
    *

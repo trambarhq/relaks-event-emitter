@@ -86,3 +86,15 @@ describe('#waitForEvent()', function() {
     }
   })
 })
+
+describe('#change()', function() {
+  it ('should return a promsie than fulfills when change occurs', async function() {
+    const emitter = new EventEmitter;
+    const promise = emitter.change();
+    const event = new GenericEvent('change', emitter);
+    const handled = emitter.triggerEvent(event);
+    expect(handled).to.be.true;
+    const eventReceived = await promise;
+    expect(eventReceived).to.equal(event);
+  })
+})
