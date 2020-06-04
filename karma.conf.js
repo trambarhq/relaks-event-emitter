@@ -1,6 +1,6 @@
-var Path = require('path');
+import { resolve } from 'path';
 
-module.exports = function(config) {
+export default (config) => {
   config.set({
     port: 9876,
     colors: true,
@@ -35,7 +35,7 @@ module.exports = function(config) {
           {
             test: /\.jsx?$/,
             loader: 'babel-loader',
-            exclude: Path.resolve('./node_modules'),
+            exclude: resolve('./node_modules'),
             query: {
               presets: [
                 '@babel/env',
@@ -49,9 +49,7 @@ module.exports = function(config) {
       },
       resolve: {
         extensions: [ '.js', '.jsx' ],
-        modules: [ 'node_modules' ].map((folder) => {
-          return Path.resolve(`./${folder}`);
-        })
+        modules: resolve(`./node_modules`)
       },
       performance: {
         hints: false
