@@ -1,6 +1,6 @@
-import { resolve } from 'path';
+const { resolve } = require('path');
 
-export default (config) => {
+module.exports = (config) => {
   config.set({
     port: 9876,
     colors: true,
@@ -49,7 +49,7 @@ export default (config) => {
       },
       resolve: {
         extensions: [ '.js', '.jsx' ],
-        modules: resolve(`./node_modules`)
+        modules: [ resolve(`./node_modules`) ]
       },
       performance: {
         hints: false
